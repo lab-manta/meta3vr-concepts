@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your first free-roam VR session | Meta3 VR</title>
+<meta name="description" content="Tips, game guides and party ideas from Meta3 VR, Brisbane's free-roam virtual reality arena in Newstead.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#07080d; --panel:#10131c; --panel2:#151a26; --line:#232a3a; --text:#e9edf7; --muted:#9aa3b8;
+  --blue:#369afc; --blue-d:#154fc1; --peri:#8a8cff; --yellow:#f8f812; --radius:14px;
+  --wrap:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font:400 17px/1.6 Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.h{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.eyebrow{font:700 13px/1 Heebo;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+
+/* Header: mirrors the live site header (logo + main nav + yellow Book Now) */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(7,8,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;gap:28px;height:72px}
+.site-header .logo img{height:34px;width:auto}
+.nav{display:flex;gap:22px;margin-left:auto;font:500 15px Heebo;color:#cfd5e4}
+.nav a:hover,.nav a[aria-current]{color:#fff}
+.nav a[aria-current]{box-shadow:inset 0 -2px 0 var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:10px;font:700 16px Heebo;white-space:nowrap}
+.btn-book{background:var(--yellow);color:var(--ink)}
+.btn-book:hover{filter:brightness(.95)}
+.btn-ghost{border:1.5px solid #3a4560;color:#fff}
+.btn-ghost:hover{border-color:var(--blue)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1.5px solid #3a4560;color:#fff;border-radius:10px;height:44px;padding:0 14px;font:600 15px Heebo}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background:url(assets/arena-overhead.jpg) center 40%/cover;opacity:.28;filter:saturate(1.1)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 30%,rgba(7,8,13,.6) 70%,rgba(7,8,13,.85)),linear-gradient(0deg,var(--ink),transparent 45%)}
+.hero .wrap{position:relative;z-index:1;padding-top:84px;padding-bottom:56px}
+.hero h1{font-size:clamp(40px,6vw,72px);text-transform:uppercase;margin:14px 0 18px;max-width:780px}
+.hero h1 span{color:var(--blue)}
+.hero p.lede{font-size:20px;color:#c8cfde;max-width:620px}
+.stripe{height:8px;width:120px;margin-top:28px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 10px,var(--ink) 10px 20px);border-radius:2px}
+
+/* Topic chips */
+.topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.chip{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1.5px solid #2f3850;background:rgba(16,19,28,.8);font:500 15px Heebo;color:#d5dbea}
+.chip:hover{border-color:var(--blue);color:#fff}
+.chip[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:var(--ink);font-weight:700}
+
+/* Featured */
+.section{padding:64px 0}
+.featured{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.featured .img{position:relative;min-height:420px}
+.featured .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.featured .body{padding:44px 40px;display:flex;flex-direction:column;justify-content:center}
+.featured h2{font-size:clamp(28px,3vw,40px);margin:12px 0 14px}
+.featured h2 a:hover{color:var(--blue)}
+.featured p{color:#c2c9d9}
+.meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;font:500 14px Heebo;color:var(--muted)}
+.meta span+span::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:#55607a;margin-right:14px;vertical-align:middle}
+.readmore{margin-top:26px;font:700 15px Heebo;color:var(--blue);display:inline-flex;gap:8px}
+.readmore:hover{color:#fff}
+.tag{display:inline-block;align-self:flex-start;font:700 12px/1 Heebo;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--blue);padding:7px 10px;border-radius:6px}
+.tag.y{background:var(--yellow)}
+.tag.p{background:var(--peri)}
+
+/* Grid */
+.grid-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:26px}
+.grid-head h2{font-size:28px;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.card{color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3a4a6c;transform:translateY(-3px)}
+.card .img{aspect-ratio:16/10;overflow:hidden;position:relative}
+.card .img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .img img{transform:scale(1.04)}
+.card .img .tag{position:absolute;left:14px;top:14px}
+.card .body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.card h3{font:700 21px/1.3 Montserrat;margin-bottom:10px}
+.card p{color:#b9c1d3;font-size:16px}
+.card .meta{margin-top:auto;padding-top:18px}
+
+/* In-grid booking card */
+.card.cta{background:linear-gradient(160deg,#16213b,#0d1220 60%);border-color:#2b3c63;justify-content:center;padding:32px 28px;position:relative}
+.card.cta::after{content:"";position:absolute;right:-30px;bottom:-30px;width:180px;height:180px;background:url(assets/logo.png) center/contain no-repeat;opacity:.06}
+.card.cta h3{font-size:26px;text-transform:uppercase;margin:12px 0}
+.card.cta .price{font:800 44px/1 Montserrat;color:var(--yellow);margin:6px 0 4px}
+.card.cta .small{font-size:14px;color:var(--muted);margin-bottom:22px}
+
+/* Party band */
+.band{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.band .img{background:url(assets/gen-work-team.jpg) center/cover;min-height:340px}
+.band .body{color:var(--text);background:var(--panel2);padding:48px 44px}
+.band h2{font-size:clamp(28px,3vw,38px);text-transform:uppercase;margin:12px 0 14px}
+.band ul{list-style:none;margin:18px 0 28px;display:grid;gap:10px}
+.band li{padding-left:28px;position:relative;color:#ccd3e2}
+.band li::before{content:"";position:absolute;left:0;top:9px;width:14px;height:8px;border-left:2.5px solid var(--yellow);border-bottom:2.5px solid var(--yellow);transform:rotate(-45deg)}
+.band .actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Pager */
+.pager{display:flex;justify-content:center;gap:8px;margin-top:40px}
+.pager a{white-space:nowrap;min-width:44px;height:44px;display:grid;place-items:center;border:1.5px solid #2f3850;border-radius:10px;font:600 15px Heebo;padding:0 12px}
+.pager a[aria-current]{background:var(--blue);border-color:var(--blue);color:var(--ink)}
+
+/* Footer: real site details */
+footer{border-top:1px solid var(--line);margin-top:24px;background:#05060a;color:var(--text)}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:32px;padding-top:56px;padding-bottom:40px}
+footer .fh{font:700 13px Heebo;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+footer p,footer li{color:var(--muted);font-size:15px;list-style:none;line-height:1.9}
+footer a:hover{color:#fff}
+.legal{border-top:1px solid var(--line);padding:18px 0;color:#8b94a9;font-size:13px}
+.note{background:#2a2400;color:#f8f812;border:1px dashed #6b6400;border-radius:8px;padding:2px 8px;font-size:12px}
+
+/* Mobile sticky book bar */
+.mbar{display:none}
+@media (max-width:980px){
+  .nav,.site-header .btn-book{display:none}
+  .menu-btn{display:inline-flex;align-items:center}
+  .featured,.band{grid-template-columns:minmax(0,1fr)}
+  .featured .img{min-height:260px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  footer .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .hero .wrap{padding-top:56px;padding-bottom:40px}
+  .hero p.lede{font-size:18px}
+  .topics{flex-wrap:nowrap;overflow-x:auto;margin-right:-24px;padding-right:24px;scrollbar-width:none}
+  .topics::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .section{padding:44px 0}
+  .featured .body,.band .body{padding:28px 22px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .grid-head{flex-direction:column;align-items:start}
+  footer .wrap{grid-template-columns:minmax(0,1fr)}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(7,8,13,.96);border-top:1px solid var(--line)}
+  .mbar .btn{flex:1;height:50px}
+  body{padding-bottom:76px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.crumbs{font:500 14px Heebo;color:var(--muted);margin-bottom:18px}.crumbs a:hover{color:#fff}
+.post-hero .wrap{padding-top:56px;padding-bottom:36px;max-width:880px}
+.post-hero h1{font-size:clamp(34px,5vw,56px);margin:14px 0 18px}
+.post-hero .lede{font-size:20px;color:#c8cfde}
+.cover{max-width:1100px;margin:0 auto;padding:0 24px}.cover img{width:100%;height:auto;object-position:center 22%;aspect-ratio:16/8;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line)}
+.layout{max-width:1100px;margin:0 auto;padding:48px 24px 24px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px}
+.toc{position:sticky;top:96px;align-self:start;border-left:2px solid var(--line);padding-left:18px}
+.toc .fh{font:700 12px Heebo;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.toc a{display:block;font:500 15px/1.4 Heebo;color:#c5cddd;padding:6px 0}.toc a:hover{color:var(--blue)}
+.prose{max-width:700px;font-size:18px;line-height:1.75;color:#d7dceb}
+.prose h2{font:800 30px/1.15 Montserrat;color:#fff;margin:44px 0 14px;scroll-margin-top:96px}
+.prose h3{font:700 21px/1.35 Montserrat;color:#fff;margin:28px 0 10px}
+.prose p{margin:0 0 18px}.prose ul{margin:0 0 22px 22px}.prose li{margin:6px 0}
+.prose a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.prose strong{color:#fff}
+.prose a.btn{color:var(--ink);text-decoration:none}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:8px 0 28px}
+.fact{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.fact b{display:block;font:800 26px/1 Montserrat;color:var(--yellow)}.fact span{font-size:14px;color:var(--muted)}
+.bookbox{display:flex;gap:22px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#16213b,#0d1220);border:1px solid #2b3c63;border-radius:var(--radius);padding:26px 28px;margin:34px 0}
+.bookbox h3{margin:0 0 4px;font:800 22px Montserrat;color:#fff;text-transform:uppercase}.bookbox p{margin:0;color:#b9c1d3;font-size:16px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin:10px 0}
+.faq summary{cursor:pointer;list-style:none;padding:16px 20px;font:700 17px Heebo;color:#fff;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--blue);font-size:22px;line-height:1}.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 20px 16px;margin:0;font-size:16px}
+.author{display:flex;gap:16px;align-items:center;border-top:1px solid var(--line);margin-top:40px;padding-top:24px}
+.author img{width:56px;height:56px;border-radius:50%;object-fit:contain;padding:10px;background:#151a26;border:1px solid var(--line)}
+.author b{color:#fff}.author span{color:var(--muted);font-size:15px}
+.related{border-top:1px solid var(--line);margin-top:40px}
+.sample{display:inline-block;background:#2a2400;color:#f8f812;border:1px dashed #6b6400;border-radius:8px;padding:6px 12px;font:600 13px Heebo;margin-bottom:18px}
+@media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;border-left:0;padding:16px;background:var(--panel);border-radius:12px;border:1px solid var(--line)}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.bookbox{flex-direction:column;align-items:flex-start}}
+@media (max-width:640px){.prose{font-size:17px}.prose h2{font-size:25px}.cover{padding:0}.cover img{border-radius:0;border-left:0;border-right:0;aspect-ratio:4/3}}
+</style>
+<meta name="robots" content="noindex,nofollow"></head>
+<body><div style="background:#111;color:#fff;font:600 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;padding:8px 16px">Private design preview for Meta3 VR, prepared by Longplay Media. Not live.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="https://meta3vr.com.au/" aria-label="Meta3 VR home"><img src="assets/logo.png" alt="Meta3 VR" width="150" height="34"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="https://meta3vr.com.au/booking/">Book Now</a>
+      <a href="https://meta3vr.com.au/birthday-parties-and-private-events/">Book Private Event</a>
+      <a href="https://meta3vr.com.au/meta3experiences/">Experiences</a>
+      <a href="https://meta3vr.com.au/faqs/">FAQs</a>
+      <a href="#" aria-current="page">Blog</a>
+      <a href="https://meta3vr.com.au/contactus/">Contact us</a>
+    </nav>
+    <a class="btn btn-book" href="https://meta3vr.com.au/booking/">Book now</a>
+    <button class="menu-btn" aria-expanded="false" aria-label="Open menu">Menu</button>
+  </div>
+</header>
+<main>
+<section class="post-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="https://meta3vr.com.au/">Home</a> / <a href="../blog/">Blog</a> / <a href="../blog/">First visit</a></nav>
+  <span class="tag y">First visit</span>
+  <h1 class="h">First VR visit in Brisbane: what to expect</h1>
+  <p class="lede">Know what to expect before your first visit: what to wear, game ages and how booking works.</p>
+  <div class="meta"><span>Author to be confirmed</span><span>Reading time after writing</span><span>Draft</span></div>
+</div></section>
+<div class="cover"><img src="assets/gen-mates.jpg" alt="A group of players with their blasters in the Meta3 VR arena" width="1600" height="1470"></div>
+<div class="layout">
+  <aside class="toc" aria-label="On this page"><p class="fh">On this page</p>
+    <a href="#quick">The quick facts</a><a href="#wear">What to wear</a><a href="#session">How a session runs</a><a href="#games">Which game to pick</a><a href="#faq">Questions</a></aside>
+  <article class="prose">
+    <div class="sample">Layout sample. The final article will be written and checked before publishing.</div>
+    <h2 id="quick">The quick facts</h2>
+    <div class="facts">
+      <div class="fact"><b>30 min</b><span>per game</span></div>
+      <div class="fact"><b>8+</b><span>selected games (others 10+)</span></div>
+      <div class="fact"><b>1 to 8</b><span>players per session</span></div>
+      <div class="fact"><b>from $39</b><span>arena games a player, Wed to Fri</span></div>
+    </div>
+    <p>Meta3 VR is a free-roam arena in Newstead. You walk the real floor with a headset on and a blaster in your hands, and the game world moves with you. There are no pods: your squad shares one open space.</p>
+    <h2 id="wear">What to wear</h2>
+    <p>Wear comfortable clothes and closed shoes you can move in. You will walk, turn and duck, so skip anything long or loose that could catch.</p>
+    <ul><li>Closed shoes</li><li>Clothes you can move freely in</li></ul>
+    <div class="bookbox"><div><h3>Ready for round one?</h3><p>Arena games from $39 a player, Wednesday to Friday. Regular price $59.</p></div><a class="btn btn-book" href="https://meta3vr.com.au/booking/">Book now</a></div>
+    <h2 id="session">How a session runs</h2>
+    <p>Check your booking for game length and arrival instructions. Please arrive 15 minutes before your session. Your squad then plays together in the same space.</p>
+    <h2 id="games">Which game to pick</h2>
+    <p>Pick by mood. Overrun is zombie survival. Legend of Faragor is a fantasy adventure. See every game on the <a href="https://meta3vr.com.au/meta3experiences/">experiences page</a>.</p>
+    <h2 id="faq">Questions</h2>
+    <div class="faq">
+      <details open><summary>How old do you need to be?</summary><p>Age limits vary by game. Toon Strike, Legend of Faragor and Escapage are 8+. Overrun, Virtual Arena and the zombie games are 10+.</p></details>
+      <details><summary>How many people can play at once?</summary><p>Up to 10 players per session.</p></details>
+      <details><summary>Can we bring food?</summary><p>Parties can bring their own food and soft drinks. No alcohol.</p></details>
+    </div>
+    <div class="author"><img src="assets/logo.png" alt=""><div><b>Author to be confirmed</b><br><span>Approved byline from the owner before publishing.</span></div></div>
+  </article>
+</div>
+<section class="section related"><div class="wrap">
+  <div class="grid-head"><h2 class="h">Keep reading</h2><a class="btn btn-ghost" href="../blog/">All posts</a></div>
+  <div class="grid">
+    <article class="card"><a class="img" href="#"><img src="assets/game-zombie.jpg" alt="Overrun game scene" loading="lazy"><span class="tag">Game guides</span></a><div class="body"><h3><a href="#">Overrun or Legend of Faragor: choosing a game for your group</a></h3><div class="meta"><span>5 min read</span></div></div></article>
+    <article class="card"><a class="img" href="#"><img src="assets/gen-family-party.jpg" alt="Friends with blasters in the arena" loading="lazy"><span class="tag p">Birthday parties</span></a><div class="body"><h3><a href="#">Planning a teenage birthday party in Brisbane with VR</a></h3><div class="meta"><span>7 min read</span></div></div></article>
+    <article class="card"><a class="img" href="#"><img src="assets/arena-wide.jpg" alt="Players across the open arena floor" loading="lazy"><span class="tag y">First visit</span></a><div class="body"><h3><a href="#">VR escape rooms and free-roam games: choosing a Brisbane experience</a></h3><div class="meta"><span>4 min read</span></div></div></article>
+  </div>
+</div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="assets/logo.png" alt="Meta3 VR" style="height:34px;width:auto;margin-bottom:16px">
+      <p>Free-roam virtual reality arena in Newstead, Brisbane. Gaming beyond reality.</p>
+    </div>
+    <div><p class="fh">Visit</p><p>22 Austin Street<br>Newstead QLD 4006</p></div>
+    <div><p class="fh">Contact</p><p><a href="tel:+61721146680">07 2114 6680</a> <span class="note">confirm</span><br><a href="mailto:info@meta3vr.com.au">info@meta3vr.com.au</a></p></div>
+    <div><p class="fh">Explore</p><ul><li><a href="https://meta3vr.com.au/booking/">Book now</a></li><li><a href="https://meta3vr.com.au/birthday-parties-and-private-events/">Parties</a></li><li><a href="https://meta3vr.com.au/faqs/">FAQs</a></li><li><a href="#">Blog</a></li></ul></div>
+  </div>
+  <div class="wrap legal">© 2026 Meta3 VR Pty Ltd. Design preview, not live.</div>
+</footer>
+<div class="mbar"><a class="btn btn-ghost" href="tel:+61721146680">Call</a><a class="btn btn-book" href="https://meta3vr.com.au/booking/">Book now</a></div>
+</body>
+</html>
